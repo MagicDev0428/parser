@@ -60,6 +60,10 @@ static K Lst(K x){
     return Enl(Kst(x));
 }
 
+void dw(K x){
+    write(rx(x)); dx(x);
+}
+
 void repl(K x){
     I n=nn(x),xp=(I)x,s=0,c;
     if(n>0){
@@ -70,6 +74,31 @@ void repl(K x){
           Exit(0);
         } else if(c=='m'){ // mem usage
           dx(x); dx(Out(Ki((1<<memorycount_)/1024)));
+        } else if(c=='h'){ // refcard help
+          dx(x);
+          dw(KC("+ flp add       '  ech  bin                c char     \"x\"   \"ab\"\n"));
+          dw(KC("- neg sub       /  rdc  mod   f n/ ndo     i int      2     1 2\n"));
+          dw(KC("* fst mul       \\  scn  div   x//y dec     s symbol   `a    ``c`d\n"));
+          dw(KC("% sqr div       ': ecp  in    y\\\\x enc     f float    2.    1. 2.\n"));
+          dw(KC("! til key       /: ecr  split   f/:fix\n"));
+          dw(KC("& wer min       \\: ecl  join    f\\:fix     L list     (1;2 3)\n"));
+          dw(KC("| rev max       while[c;a;b;..]            D dict     `a`b!1 2\n"));
+          dw(KC("< asc les       $[a;b;...]      cond       T table    +`a`b!..\n"));
+          dw(KC("> dsc mor       @[x;i;+;y]      amend      v verb     +\n"));
+          dw(KC("= grp eql       .[x;i;+;y]      dmend      c comp     1+/*%\n"));
+          dw(KC("~ not mtc       {a+b}.d         env        d derived  +/\n"));
+          dw(KC(", enl cat       k?t             group      l lambda   {x+y}\n"));
+          dw(KC("^ srt cut       k!t             key        x native   c-extension\n"));
+          dw(KC("# cnt tak       t,d t,t t,'t(h) join\n"));
+          dw(KC("_ flr drp       t{a>5}          where     exec: t~`v: push\n"));
+          dw(KC("$ str cst       c:<`file(read)             v:  0..63   monadic\n"));
+          dw(KC("? unq fnd       `file<c(write)                64..127  dyadic\n"));
+          dw(KC("@ typ atx       `@i(verb) (+)~`2             128       pop + dyadic\n"));
+          dw(KC(". val cal       .(1;2;`64+(+))  exec         129..255  tetradic\n"));
+          dw(KC("                                             256       drop\n"));
+          dw(KC("abs sin cos exp log any find             320/384   jmp, jmp-ifz\n"));
+          dw(KC("                                             448..     quoted verb\n"));
+          dw(KC("rand: ?n(uniform) n?n(with) -n?n(w/o) n?L\n"));
         }
         return;
       }
